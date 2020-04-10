@@ -733,7 +733,7 @@ int vertexdata(Project *pr)
 
     int j;
     double x, y;
-    
+
     // Check for valid link ID
     if (parser->Ntokens < 3) return 201;
     if ((j = findlink(net, parser->Tok[0])) == 0) return setError(parser, 0, 204);

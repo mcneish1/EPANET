@@ -1,6 +1,6 @@
 #! /bin/bash
 
-# 
+#
 #  test-config.sh - Generates nrtest test configuration file for test case.
 #
 #  Date Created: 3/19/2018
@@ -10,7 +10,7 @@
 #
 #  Arguments:
 #    1 - name
-#    2 - version 
+#    2 - version
 #    3 - description
 #
 #  Suggested Usage:
@@ -29,7 +29,7 @@ cat<<EOF
     "description": "${description}",
     "args": [
         "${name}.inp",
-        "${name}.rpt", 
+        "${name}.rpt",
         "${name}.out"
     ],
     "input_files": [

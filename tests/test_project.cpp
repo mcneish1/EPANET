@@ -130,7 +130,7 @@ BOOST_FIXTURE_TEST_CASE(test_title, FixtureOpenClose)
     std::string ref[3] = {
         " EPANET Example Network 1",
         "A simple example of modeling chlorine decay. Both bulk and",
-        "wall reactions are included. "};
+        "wall reactions are included."};
 
     error = EN_gettitle(ph, c_test[0], c_test[1], c_test[2]);
     BOOST_REQUIRE(error == 0);

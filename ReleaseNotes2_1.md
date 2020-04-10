@@ -97,8 +97,3 @@ Contributors to this version (listed in order of first contribution):
 - engine code and command-line executable are now in separate implementation files
 - parameter `#define` directives are now enumerated values
 - main header now contains doxygen-compatible comment blocks for auto-generated documentation
-
-
-
-
-

@@ -196,7 +196,7 @@ int   runhyd(Project *pr, long *t)
     int   iter;          // Iteration count
     int   errcode;       // Error code
     double relerr;       // Solution accuracy
-    
+
     // Find new demands & control actions
     *t = time->Htime;
     demands(pr);
@@ -397,7 +397,7 @@ void  setlinkstatus(Project *pr, int index, char value, StatusType *s, double *k
         if (t == PUMP)
         {
             *k = 1.0;
-            // Check if a re-opened pump needs its flow reset            
+            // Check if a re-opened pump needs its flow reset
             if (*s == CLOSED) resetpumpflow(pr, index);
         }
         if (t > PUMP &&  t != GPV) *k = MISSING;
@@ -601,11 +601,11 @@ int  controls(Project *pr)
             k1 = hyd->LinkSetting[k];
             k2 = k1;
             if (link->Type > PIPE) k2 = control->Setting;
-            
+
             // Check if a re-opened pump needs its flow reset
             if (link->Type == PUMP && s1 == CLOSED && s2 == OPEN)
                 resetpumpflow(pr, k);
-                
+
             if (s1 != s2 || k1 != k2)
             {
                 hyd->LinkStatus[k] = s2;
@@ -1112,6 +1112,5 @@ void resetpumpflow(Project *pr, int i)
     Network *net = &pr->network;
     Spump *pump = &net->Pump[findpump(net, i)];
     if (pump->Ptype == CONST_HP)
-        pr->hydraul.LinkFlow[i] = pump->Q0; 
+        pr->hydraul.LinkFlow[i] = pump->Q0;
 }
-

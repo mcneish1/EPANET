@@ -35,7 +35,7 @@ cat<<EOF
 {
     "name" : "epanet",
     "version" : "$4",
-    "description" : "$2 $3", 
+    "description" : "$2 $3",
     "setup_script" : "",
     "exe" : "${abs_build_path}/${test_cmd}"
 }

@@ -1,4 +1,4 @@
-/*  MULTIPLE MINIMUM DEGREE ROW RE-ORDERING ALGORITHM 
+/*  MULTIPLE MINIMUM DEGREE ROW RE-ORDERING ALGORITHM
  *
  *  Modified to work with Fortran-style arrays and be thread-safe.
  *

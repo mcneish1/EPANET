@@ -36,7 +36,7 @@ Public Const EN_TANK_KBULK = 23
 Public Const EN_TANKVOLUME = 24
 Public Const EN_MAXVOLUME = 25
 Public Const EN_CANOVERFLOW = 26
-Public Const EN_DEMANDDEFICIT = 27 
+Public Const EN_DEMANDDEFICIT = 27
 
 Public Const EN_DIAMETER = 0      ' Link parameters
 Public Const EN_LENGTH = 1
@@ -92,7 +92,7 @@ Public Const EN_LINK = 1
 Public Const EN_TIMEPAT = 2
 Public Const EN_CURVE = 3
 Public Const EN_CONTROL = 4
-Public Const EN_RULE = 5 
+Public Const EN_RULE = 5
 
 Public Const EN_NODECOUNT = 0     ' Component counts
 Public Const EN_TANKCOUNT = 1
@@ -310,7 +310,7 @@ Public Const EN_MISSING As Double = -1.0E10
  Declare Function ENsettankdata Lib "epanet2.dll" (ByVal index As Long, ByVal elev As Single, ByVal initlvl As Single, ByVal minlvl As Single, ByVal maxlvl As Single, ByVal diam As Single, ByVal minvol As Single, ByVal volcurve As String) As Long
  Declare Function ENgetcoord Lib "epanet2.dll" (ByVal index As Long, x As Double, y As Double) As Long
  Declare Function ENsetcoord Lib "epanet2.dll" (ByVal index As Long, ByVal x As Double, ByVal y As Double) As Long
- 
+
 'Nodal Demand Functions
  Declare Function ENgetdemandmodel Lib "epanet2.dll" (type_ As Long, pmin As Single, preq As Single, pexp As Single) As Long
  Declare Function ENsetdemandmodel Lib "epanet2.dll" (ByVal type_ As Long, ByVal pmin As Single, ByVal preq As Single, ByVal pexp As Single) As Long

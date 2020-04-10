@@ -516,7 +516,7 @@ int DLLEXPORT ENgetvertexcount(int index, int *count)
 {
     return EN_getvertexcount(_defaultProject, index, count);
 }
-    
+
 int DLLEXPORT ENgetvertex(int index, int vertex, double *x, double *y)
 {
     return EN_getvertex(_defaultProject, index, vertex, x, y);
@@ -525,7 +525,7 @@ int DLLEXPORT ENgetvertex(int index, int vertex, double *x, double *y)
 int DLLEXPORT ENsetvertices(int index, double *x, double *y, int count)
 {
     return EN_setvertices(_defaultProject, index, x, y, count);
-}    
+}
 
 /********************************************************************
 
@@ -704,10 +704,10 @@ int DLLEXPORT ENsetcurve(int index, EN_API_FLOAT_TYPE *xValues,
     double *xx = NULL;
     double *yy = NULL;
     int i, errcode = 0;
-    
+
     if (xValues == NULL || yValues == NULL) return 206;
     if (nPoints < 1) return 202;
-    
+
     xx = (double *)calloc(nPoints, sizeof(double));
     yy = (double *)calloc(nPoints, sizeof(double));
     if (xx && yy)

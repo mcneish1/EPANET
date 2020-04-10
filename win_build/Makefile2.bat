@@ -1,7 +1,7 @@
 rem : rem : Compilation script (Visual Studio 2017/2019 with CMAKE)
 
 rem : set the path to CMAKE
-SET CMAKE_PATH=cmake.exe 
+SET CMAKE_PATH=cmake.exe
 
 SET Build_PATH=%CD%
 
@@ -10,7 +10,7 @@ SET COMPILE_PATH_TMP=%Build_PATH%\tmp\
 SET COMPILE_PATH_WIN64=%Build_PATH%\64bit\
 SET COMPILE_PATH_WIN32=%Build_PATH%\32bit\
 
-rem : CMAKE the root directory of the EPANET project 
+rem : CMAKE the root directory of the EPANET project
 rem : 32 bit
 MKDIR "%COMPILE_PATH_TMP%"
 CD "%COMPILE_PATH_TMP%"
@@ -25,7 +25,7 @@ XCOPY "%COMPILE_PATH_TMP%lib\Release\epanet2.lib" "%COMPILE_PATH_WIN32%epanet2.l
 CD "%Build_PATH%"
 RMDIR /s /q "%COMPILE_PATH_TMP%"
 
-rem : CMAKE the root directory of the EPANET project 
+rem : CMAKE the root directory of the EPANET project
 rem : 64 bit
 MKDIR "%COMPILE_PATH_TMP%"
 CD "%COMPILE_PATH_TMP%"
@@ -39,4 +39,3 @@ XCOPY "%COMPILE_PATH_TMP%lib\Release\epanet2.lib" "%COMPILE_PATH_WIN64%epanet2.l
 
 CD "%Build_PATH%"
 RMDIR /s /q "%COMPILE_PATH_TMP%"
-

@@ -1,6 +1,6 @@
 /**
 @page InpFile Input File
-The Input file is a standard EPANET input data file that describes the system being analyzed. It can either be created external to the application being developed with the Toolkit or by the application itself. It is the first file name supplied to the @ref EN_open function. A project's data associated with its Input file remains accessible until the project is closed down with the @ref EN_close or deleted with @ref EN_deleteproject. 
+The Input file is a standard EPANET input data file that describes the system being analyzed. It can either be created external to the application being developed with the Toolkit or by the application itself. It is the first file name supplied to the @ref EN_open function. A project's data associated with its Input file remains accessible until the project is closed down with the @ref EN_close or deleted with @ref EN_deleteproject.
 
 The file is organized by sections where each section begins with a keyword enclosed in brackets. The various keywords are listed below. Click on a section to see the format of the data it contains.
 
@@ -14,7 +14,7 @@ The file is organized by sections where each section begins with a keyword enclo
 |@subpage PumpsPage "[Pumps]"    |@subpage RulesPage "[Rules]"    |                                 |                                |                                    |
 |@subpage ValvesPage "[Valves]"  |@subpage DmndsPage "[Demands]"  |                                 |                                |                                    |
 |@subpage EmitsPage "[Emitters]" |                                |                                 |                                |                                    |
-    
+
 The order of sections is not important. However, whenever a node or link is referred to in a section it must have already been defined in the [JUNCTIONS], [RESERVOIRS], [TANKS], [PIPES], [PUMPS], or [VALVES] sections. Thus it is recommended that these sections be placed first.
 
 Each section can contain one or more lines of data. Blank lines can appear anywhere in the file and the semicolon (;) can be used to indicate that what follows on the line is a comment, not data. A maximum of 1024 characters can appear on a line.
@@ -45,7 +45,7 @@ One line for each control which can be of the form:
 where:
 <table style = "border: 0px solid black">
 <tr><td><I>linkID</I></td><td> = </td><td>&nbsp;a link ID label</td></tr>
-<tr><td><I>status</I></td><td> = </td><td>&nbsp;<b> OPEN / CLOSED</b>, a pump speed setting, or a control valve setting</td></tr>    
+<tr><td><I>status</I></td><td> = </td><td>&nbsp;<b> OPEN / CLOSED</b>, a pump speed setting, or a control valve setting</td></tr>
 <tr><td><I>nodeID</I></td><td> = </td><td>&nbsp;a node ID label</td></tr>
 <tr><td><I>value</I></td><td> = </td><td>&nbsp;a pressure for a junction or a water level for a tank</td></tr>
 <tr><td><I>time</I></td><td> = </td><td>&nbsp;a time since the start of the simulation in hours</td></tr>
@@ -53,10 +53,10 @@ where:
 </table>
 
 __Remarks:__
-1. Simple controls are used to change link status or settings based on tank water level, junction pressure, time into the simulation or time of day.  
-2. See the notes for the @ref StatusPage section for conventions used in specifying link status and setting, particularly for control valves.  
+1. Simple controls are used to change link status or settings based on tank water level, junction pressure, time into the simulation or time of day.
+2. See the notes for the @ref StatusPage section for conventions used in specifying link status and setting, particularly for control valves.
 
-__Examples:__ 
+__Examples:__
 
 <tt>[CONTROLS]<br>
 ;Close Link 12 if the level in Tank 23 exceeds 20 ft.<br>
@@ -218,7 +218,7 @@ One line for each junction containing:
 - Base demand flow (flow units) (optional)
 - Demand pattern ID (optional)
 
-__Remarks:__ 
+__Remarks:__
 1. A <b>[JUNCTIONS]</b> section with at least one junction is required.
 2. If no demand pattern is supplied then the junction demand follows the Default Demand Pattern provided in the @ref OptionsPage section, or Pattern 1 if no Default Pattern is specified. If the Default Pattern (or Pattern 1) does not exist, then the demand remains constant.
 3. Demands can also be entered in the @ref DmndsPage section and include multiple demand categories per junction.
@@ -261,8 +261,8 @@ __Example:__
 ```
 [MIXING]
 ;Tank      Model
-;----------------------- 
-T12        LIFO 
+;-----------------------
+T12        LIFO
 T23        2COMP     0.2
 ```
 */
@@ -330,7 +330,7 @@ The \b HYDRAULICS option allows you to either <B>SAVE</B> the current hydraulics
 
 \b ACCURACY prescribes the convergence criterion that determines when a hydraulic solution has been reached. The trials end when the sum of all flow changes from the previous solution divided by the total flow in all links is less than this number. The default is 0.001.
 
-\b FLOWCHANGE is a similar convergence criterion requiring that the largest absolute flow change between the current and previous solutions be less than the specified value (in flow units). The default is 0 which means that this criterion is not used. 
+\b FLOWCHANGE is a similar convergence criterion requiring that the largest absolute flow change between the current and previous solutions be less than the specified value (in flow units). The default is 0 which means that this criterion is not used.
 
 \b HEADERROR is yet another convergence criterion requiring that the head loss computed by the head loss formula compared to the difference in nodal heads across each link be less than the specified value (in ft or m). The default is 0 which means that this criterion is not used.
 
@@ -368,7 +368,7 @@ __Remarks:__
 1. All options assume their default values if not explicitly specified in this section.
 2. Items offset by slashes (/) indicate allowable choices.
 
-__Example:__ 
+__Example:__
 ```
 [OPTIONS]
 UNITS  CFS
@@ -655,7 +655,7 @@ __Example:__
 ```
 [RESERVOIRS]
 ;ID    Head      Pattern
-;----------------------- 
+;-----------------------
 R1     512               ;Head stays constant
 R2     120       Pat1    ;Head varies with time
 ```
@@ -698,7 +698,7 @@ __Remarks:__
 1. Only the <B>RULE, IF</B> and <B>THEN</B> portions of a rule are required; the other portions are optional.
 2. When mixing <B>AND</B> and <B>OR</B> clauses, the <B>OR</B> operator has higher precedence than <B>AND</B>, i.e.,<br>
  &nbsp; &nbsp; &nbsp; `IF A or B and C` <br>
- is equivalent to<br>  
+ is equivalent to<br>
  &nbsp; &nbsp; &nbsp; `IF (A or B) and C` <br>
  If the interpretation was meant to be<br>
  &nbsp; &nbsp; &nbsp; `IF A or (B and C)`<br>
@@ -713,13 +713,13 @@ __Example:__
 RULE 1
 IF   TANK   1 LEVEL ABOVE 19.1
 THEN PUMP 335 STATUS IS CLOSED
-AND  PIPE 330 STATUS IS OPEN 
+AND  PIPE 330 STATUS IS OPEN
 
 RULE 2
 IF   SYSTEM CLOCKTIME >= 8 AM
 AND  SYSTEM CLOCKTIME < 6 PM
 AND  TANK 1 LEVEL BELOW 12
-THEN PUMP 335 STATUS IS OPEN 
+THEN PUMP 335 STATUS IS OPEN
 
 RULE 3
 IF   SYSTEM CLOCKTIME >= 6 PM
@@ -732,9 +732,9 @@ THEN PUMP 335 STATUS IS OPEN
 /**
 @page ConditionClauses Condition Clauses
 
-A condition clause in a @ref RulesPage "Rule-Based Control" takes the form of: 
+A condition clause in a @ref RulesPage "Rule-Based Control" takes the form of:
 
-&nbsp;&nbsp;_object &nbsp;id &nbsp;attribute &nbsp;relation &nbsp;value_    
+&nbsp;&nbsp;_object &nbsp;id &nbsp;attribute &nbsp;relation &nbsp;value_
 
 where
 <table style = "border: 0px solid black">
@@ -750,41 +750,41 @@ Some example conditional clauses are:<br>
 <tt>&nbsp;&nbsp;TANK T200 FILLTIME BELOW 3.5</tt> <br>
 <tt>&nbsp;&nbsp;LINK 44 STATUS IS OPEN</tt> <br>
 <tt>&nbsp;&nbsp;SYSTEM CLOCKTIME = 7:30 AM</tt> <br>
-<tt>&nbsp;&nbsp;SYSTEM DEMAND >= 1500</tt>  
+<tt>&nbsp;&nbsp;SYSTEM DEMAND >= 1500</tt>
 
 Objects can be any of the following keywords:<br>
 <b>&nbsp;&nbsp;NODE&nbsp;&nbsp;JUNCTION&nbsp;&nbsp;TANK&nbsp;&nbsp;RESERVOIR</b><br>
 <b>&nbsp;&nbsp;LINK&nbsp;&nbsp;PIPE&nbsp;&nbsp;PUMP&nbsp;&nbsp;VALVE</b><br>
-<b>&nbsp;&nbsp;SYSTEM</b> 
+<b>&nbsp;&nbsp;SYSTEM</b>
 
-When \b SYSTEM is used in a condition no ID is supplied. 
+When \b SYSTEM is used in a condition no ID is supplied.
 
 The following attributes can be used with Node-type objects: <br>
-<b>&nbsp;&nbsp; DEMAND</b><br> 
+<b>&nbsp;&nbsp; DEMAND</b><br>
 <b>&nbsp;&nbsp; HEAD</b><br>
 <b>&nbsp;&nbsp; PRESSURE</b>
 
 The following attributes can be used with Tanks: <br>
-<b>&nbsp;&nbsp; LEVEL</b><br> 
+<b>&nbsp;&nbsp; LEVEL</b><br>
 <b>&nbsp;&nbsp; FILLTIME&nbsp;</b> (hours needed to fill a tank) <br>
 <b>&nbsp;&nbsp; DRAINTIME</b> (hours needed to empty a tank)
 
 These attributes can be used with Link-Type objects: <br>
 <b>&nbsp;&nbsp; FLOW</b><br>
 <b>&nbsp;&nbsp; STATUS&nbsp; (OPEN, CLOSED, or ACTIVE)</b> <br>
-<b>&nbsp;&nbsp; SETTING&nbsp;</b> (pump speed or valve setting) 
+<b>&nbsp;&nbsp; SETTING&nbsp;</b> (pump speed or valve setting)
 
 The \b SYSTEM object can use the following attributes:
 <table style = "border: 0px solid black">
 <tr><td><b>&nbsp;&nbsp; DEMAND</b></td><td> (total system demand)</td></tr>
-<tr><td><b>&nbsp;&nbsp; TIME</b></td><td> (hours from the start of the simulation expressed</td></tr> 
+<tr><td><b>&nbsp;&nbsp; TIME</b></td><td> (hours from the start of the simulation expressed</td></tr>
 <tr><td><b>&nbsp;&nbsp; </b></td><td> either as a decimal number or in hours:minutes format)</td></tr>
 <tr><td><b>&nbsp;&nbsp; CLOCKTIME</b></td><td> &nbsp;(24-hour clock time with \b AM or \b PM appended)</td></tr>
 </table>
 
 Relation operators consist of the following: <br>
 <table style = "border: 0px solid black">
-<tr><td>&nbsp;&nbsp;\b = </td><td>\b IS</td></tr> 
+<tr><td>&nbsp;&nbsp;\b = </td><td>\b IS</td></tr>
 <tr><td>&nbsp;&nbsp;\b <> </td><td>\b NOT</td></tr>
 <tr><td>&nbsp;&nbsp;\b < </td><td>\b BELOW</td></tr>
 <tr><td>&nbsp;&nbsp;\b > </td><td>\b ABOVE</td></tr>
@@ -796,16 +796,16 @@ Relation operators consist of the following: <br>
 /**
 @page ActionClauses Action Clauses
 
-An action clause in a @ref RulesPage "Rule-Based Control" takes the form of: 
+An action clause in a @ref RulesPage "Rule-Based Control" takes the form of:
 
-&nbsp; &nbsp; _object_ &nbsp;_id_ &nbsp;<b>STATUS / SETTING &nbsp;IS</b> &nbsp;_value_ 
+&nbsp; &nbsp; _object_ &nbsp;_id_ &nbsp;<b>STATUS / SETTING &nbsp;IS</b> &nbsp;_value_
 
 where
 <table style = "border: 0px solid black">
 <tr> <td><I>object &nbsp;</I></td> <td> = </td> <td>&nbsp; <B>LINK, PIPE, PUMP, or VALVE</B> keyword</td> </tr>
 <tr> <td><I>id &nbsp; &nbsp;</I></td> <td> = </td> <td>&nbsp; the object's ID label</td> </tr>
 <tr> <td><I>value &nbsp;</I></td> <td> = </td> <td>&nbsp; a status condition (<b>OPEN or CLOSED</b>), pump speed setting, or valve setting</td></tr>
-</table>  
+</table>
 Some example action clauses are: <br>
 <tt>
   LINK 23 STATUS IS CLOSED <br>
@@ -813,7 +813,7 @@ Some example action clauses are: <br>
   VALVE 123 SETTING IS 90  <br>
 </tt>
 
-See the notes for the @ref StatusPage section for conventions used in specifying link status and setting, particularly for control valves. 
+See the notes for the @ref StatusPage section for conventions used in specifying link status and setting, particularly for control valves.
 */
 
 /**
@@ -854,11 +854,11 @@ __Remarks:__
 
 __Example:__<br>
 @code
-[SOURCES] 
-;Node  Type    Strength  Pattern 
-;-------------------------------- 
-N1     CONCEN  1.2       Pat1    ;Concentration varies with time 
-N44    MASS    12                ;Constant mass injection    
+[SOURCES]
+;Node  Type    Strength  Pattern
+;--------------------------------
+N1     CONCEN  1.2       Pat1    ;Concentration varies with time
+N44    MASS    12                ;Constant mass injection
 @endcode
 */
 
@@ -886,12 +886,12 @@ __Remarks:__
 
 __Example:__
 @code
-[STATUS] 
-; Link   Status/Setting 
-;---------------------- 
-  L22    CLOSED       ;Link L22 is closed 
-  P14    1.5          ;Speed for pump P14 
-  PRV1   OPEN         ;PRV1 forced open 
+[STATUS]
+; Link   Status/Setting
+;----------------------
+  L22    CLOSED       ;Link L22 is closed
+  P14    1.5          ;Speed for pump P14
+  PRV1   OPEN         ;PRV1 forced open
                       ;(overrides normal operation)
 @endcode
 */
@@ -927,14 +927,14 @@ __Remarks:__
 
 __Example:__
 @code
-[TANKS] 
-;ID   Elev.  InitLvl  MinLvl  MaxLvl  Diam  MinVol  VolCurve  Overflow 
-;--------------------------------------------------------------------- 
+[TANKS]
+;ID   Elev.  InitLvl  MinLvl  MaxLvl  Diam  MinVol  VolCurve  Overflow
+;---------------------------------------------------------------------
 ;Cylindrical tank that can overflow
-T1    100     15       5       25     120   0       *          YES 
+T1    100     15       5       25     120   0       *          YES
 
 ;Non-cylindrical tank with arbitrary diameter
-T2   100     15       5       25     1     0        VC1    
+T2   100     15       5       25     1     0        VC1
 @endcode
 */
 
@@ -987,12 +987,12 @@ __Remarks:__
 
 __Example:__
 @code
-[TIMES]       
-DURATION   240 HOURS    
-QUALITY TIMESTEP   3 MIN    
-QUALITY TIMESTEP   0:03    
-REPORT START   120    
-START CLOCKTIME   6:00 AM   
+[TIMES]
+DURATION   240 HOURS
+QUALITY TIMESTEP   3 MIN
+QUALITY TIMESTEP   0:03
+REPORT START   120
+START CLOCKTIME   6:00 AM
 @endcode
 */
 
@@ -1009,7 +1009,7 @@ Any number of lines of text.
 
 __Remarks:__
 
-The <b>[TITLE]</b> section is optional. 
+The <b>[TITLE]</b> section is optional.
 */
 
 /**
@@ -1129,7 +1129,7 @@ __Remarks:__
 @page LabelsPage [LABELS]
 
 __Purpose:__
- 
+
 Assigns coordinates to labels added to a network's visualization.
 
 __Format:__

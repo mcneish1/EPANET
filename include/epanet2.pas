@@ -42,7 +42,7 @@ const
  EN_TANKVOLUME  = 24;
  EN_MAXVOLUME   = 25;
  EN_CANOVERFLOW = 26;
- EN_DEMANDDEFICIT = 27;  
+ EN_DEMANDDEFICIT = 27;
 
  EN_DIAMETER    = 0;    { Link parameters }
  EN_LENGTH      = 1;
@@ -67,7 +67,7 @@ const
  EN_PUMP_ECURVE = 20;
  EN_PUMP_ECOST  = 21;
  EN_PUMP_EPAT   = 22;
- 
+
  EN_DURATION     = 0;  { Time parameters }
  EN_HYDSTEP      = 1;
  EN_QUALSTEP     = 2;
@@ -84,7 +84,7 @@ const
  EN_HALTFLAG     = 13;
  EN_NEXTEVENT    = 14;
  EN_NEXTEVENTTANK = 15;
- 
+
  EN_ITERATIONS     = 0;  { Analysis statistics }
  EN_RELATIVEERROR  = 1;
  EN_MAXHEADERROR   = 2;
@@ -107,7 +107,7 @@ const
  EN_CURVECOUNT   = 4;
  EN_CONTROLCOUNT = 5;
  EN_RULECOUNT    = 6;
-  
+
  EN_JUNCTION   = 0;   { Node types }
  EN_RESERVOIR  = 1;
  EN_TANK       = 2;
@@ -121,10 +121,10 @@ const
  EN_FCV        = 6;
  EN_TCV        = 7;
  EN_GPV        = 8;
- 
+
  EN_CLOSED     = 0;   { Link status types }
  EN_OPEN       = 1;
- 
+
  EN_PUMP_XHEAD  = 0;  { Pump state types }
  EN_PUMP_CLOSED = 2;
  EN_PUMP_OPEN   = 3;
@@ -143,7 +143,7 @@ const
  EN_HW         = 0;   { Head loss formulas }
  EN_DW         = 1;
  EN_CM         = 2;
-  
+
  EN_CFS        = 0;   { Flow units types }
  EN_GPM        = 1;
  EN_MGD        = 2;
@@ -156,8 +156,8 @@ const
  EN_CMD        = 9;
 
  EN_DDA        = 0;   { Demand model types }
- EN_PDA        = 1;  
- 
+ EN_PDA        = 1;
+
  EN_TRIALS     = 0;   { Option types }
  EN_ACCURACY   = 1;
  EN_TOLERANCE  = 2;
@@ -189,7 +189,7 @@ const
 
  EN_SERIES     = 0;   { Report statistic types }
  EN_AVERAGE    = 1;
- EN_MINIMUM    = 2; 
+ EN_MINIMUM    = 2;
  EN_MAXIMUM    = 3;
  EN_RANGE      = 4;
 
@@ -202,29 +202,29 @@ const
  EN_SAVE       = 1;
  EN_INITFLOW   = 10;
  EN_SAVE_AND_INIT = 11;
- 
+
  EN_CONST_HP   = 0;   { Pump curve types }
  EN_POWER_FUNC = 1;
  EN_CUSTOM     = 2;
- EN_NOCURVE    = 3;  
- 
+ EN_NOCURVE    = 3;
+
  EN_VOLUME_CURVE  = 0; { Curve types }
  EN_PUMP_CURVE    = 1;
  EN_EFFIC_CURVE   = 2;
  EN_HLOSS_CURVE   = 3;
- EN_GENERIC_CURVE = 4; 
- 
+ EN_GENERIC_CURVE = 4;
+
  EN_UNCONDITIONAL = 0; { Deletion action codes }
- EN_CONDITIONAL   = 1; 
+ EN_CONDITIONAL   = 1;
 
  EN_NO_REPORT     = 0; { Status reporting levels }
  EN_NORMAL_REPORT = 1;
  EN_FULL_REPORT   = 2;
- 
+
  EN_R_NODE     = 6;    { Rule-based control objects }
  EN_R_LINK     = 7;
  EN_R_SYSTEM   = 8;
- 
+
  EN_R_DEMAND    = 0;   { Rule-based control variables }
  EN_R_HEAD      = 1;
  EN_R_GRADE     = 2;
@@ -237,8 +237,8 @@ const
  EN_R_TIME      = 9;
  EN_R_CLOCKTIME = 10;
  EN_R_FILLTIME  = 11;
- EN_R_DRAINTIME = 12;  
- 
+ EN_R_DRAINTIME = 12;
+
  EN_R_EQ        = 0;   { Rule-based control operators }
  EN_R_NE        = 1;
  EN_R_LE        = 2;
@@ -248,15 +248,15 @@ const
  EN_R_IS        = 6;
  EN_R_NOT       = 7;
  EN_R_BELOW     = 8;
- EN_R_ABOVE     = 9; 
- 
+ EN_R_ABOVE     = 9;
+
  EN_R_IS_OPEN   = 1;   { Rule-based control link status }
  EN_R_IS_CLOSED = 2;
  EN_R_IS_ACTIVE = 3;
- 
+
  EpanetLib = 'epanet2.dll';
-  
-{Project Functions}  
+
+{Project Functions}
  function  ENepanet(F1: PAnsiChar; F2: PAnsiChar; F3: PAnsiChar; F4: Pointer): Integer; stdcall; external EpanetLib;
  function  ENinit(F2: PAnsiChar; F3: PAnsiChar; UnitsType: Integer; HeadlossType: Integer): Integer; stdcall; external EpanetLib;
  function  ENopen(F1: PAnsiChar; F2: PAnsiChar; F3: PAnsiChar): Integer; stdcall; external EpanetLib;
@@ -268,7 +268,7 @@ const
  function  ENsaveinpfile(F: PAnsiChar): Integer; stdcall; external EpanetLib;
  function  ENclose: Integer; stdcall; external EpanetLib;
 
-{Hydraulic Functions} 
+{Hydraulic Functions}
  function  ENsolveH: Integer; stdcall; external EpanetLib;
  function  ENsaveH: Integer; stdcall; external EpanetLib;
  function  ENopenH: Integer; stdcall; external EpanetLib;
@@ -299,7 +299,7 @@ const
  function  ENgetversion(var Version: Integer): Integer; stdcall; external EpanetLib;
  function  ENgeterror(Errcode: Integer; Errmsg: PAnsiChar; MaxLen: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetstatistic(StatType: Integer; var Value: Single): Integer; stdcall; external EpanetLib;
- function  ENgetresultindex(Code: Integer; Index: Integer; var Value: Integer): Integer; stdcall; external EpanetLib; 
+ function  ENgetresultindex(Code: Integer; Index: Integer; var Value: Integer): Integer; stdcall; external EpanetLib;
 
 {Analysis Options Functions}
  function  ENgetoption(Code: Integer; var Value: Single): Integer; stdcall; external EpanetLib;
@@ -312,7 +312,7 @@ const
  function  ENgetqualtype(var QualCode: Integer; var TraceNode: Integer): Integer; stdcall; external EpanetLib;
  function  ENsetqualtype(QualCode: Integer; ChemName: PAnsiChar; ChemUnits: PAnsiChar; TraceNodeID: PAnsiChar): Integer; stdcall; external EpanetLib;
 
-{Node Functions} 
+{Node Functions}
  function  ENaddnode(ID: PAnsiChar; NodeType: Integer; var Index: Integer): Integer; stdcall; external EpanetLib;
  function  ENdeletenode(Index: Integer; ActionCode: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetnodeindex(ID: PAnsiChar; var Index: Integer): Integer; stdcall; external EpanetLib;
@@ -347,7 +347,7 @@ const
  function  ENgetlinkid(Index: Integer; ID: PAnsiChar): Integer; stdcall; external EpanetLib;
  function  ENsetlinkid(Index: Integer; ID: PAnsiChar): Integer; stdcall; external EpanetLib;
  function  ENgetlinktype(Index: Integer; var Code: Integer): Integer; stdcall; external EpanetLib;
- function  ENsetlinktype(var Index: Integer; LinkType: Integer; ActionCode: Integer): Integer; stdcall; external EpanetLib; 
+ function  ENsetlinktype(var Index: Integer; LinkType: Integer; ActionCode: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetlinknodes(Index: Integer; var Node1: Integer; var Node2: Integer): Integer; stdcall; external EpanetLib;
  function  ENsetlinknodes(Index: Integer; Node1: Integer; Node2: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetlinkvalue(Index: Integer; Code: Integer; var Value: Single): Integer; stdcall; external EpanetLib;
@@ -357,13 +357,13 @@ const
  function  ENgetvertexcount(Index: Integer; var Count: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetvertex(Index: Integer; Vertex: Integer; var X: Double; var Y: Double): Integer; stdcall; external EpanetLib;
  function  ENsetvertices(Index: Integer; var X: Double; var Y: Double; Count: Integer): Integer; stdcall; external EpanetLib;
- 
+
 {Pump Functions}
  function  ENgetpumptype(LinkIndex: Integer; var PumpType: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetheadcurveindex(LinkIndex: Integer; var CurveIndex: Integer): Integer; stdcall; external EpanetLib;
- function  ENsetheadcurveindex(LinkIndex: Integer; CurveIndex: Integer): Integer; stdcall; external EpanetLib; 
- 
-{Pattern Functions} 
+ function  ENsetheadcurveindex(LinkIndex: Integer; CurveIndex: Integer): Integer; stdcall; external EpanetLib;
+
+{Pattern Functions}
  function  ENaddpattern(ID: PAnsiChar): Integer; stdcall; external EpanetLib;
  function  ENdeletepattern(Index: Integer): Integer; stdcall; external EpanetLib;
  function  ENgetpatternindex(ID: PAnsiChar; var Index: Integer): Integer; stdcall; external EpanetLib;
@@ -374,7 +374,7 @@ const
  function  ENsetpatternvalue(Index: Integer; Period: Integer; Value: Single): Integer; stdcall; external EpanetLib;
  function  ENgetaveragepatternvalue(Index: Integer; var Value: Single): Integer; stdcall; external EpanetLib;
  function  ENsetpattern(Index: Integer; var F: Single; N: Integer): Integer; stdcall; external EpanetLib;
-           
+
 {Curve Functions}
  function  ENaddcurve(ID: PAnsiChar): Integer; stdcall; external EpanetLib;
  function  ENdeletecurve(Index: Integer): Integer; stdcall; external EpanetLib;

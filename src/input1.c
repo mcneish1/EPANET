@@ -267,7 +267,7 @@ void adjustdata(Project *pr)
     // Revise pressure units depending on flow units
     if (parser->Unitsflag != SI) parser->Pressflag = PSI;
     else if (parser->Pressflag == PSI) parser->Pressflag = METERS;
-    
+
     // Store value of viscosity & diffusivity
     ucf = 1.0;
     if (parser->Unitsflag == SI) ucf = SQR(MperFT);
@@ -321,7 +321,7 @@ void adjustdata(Project *pr)
         tank = &net->Tank[i];
         if (tank->Kb == MISSING) tank->Kb = qual->Kbulk;
     }
- 
+
     // Use default pattern if none assigned to a demand
     parser->DefPat = findpattern(net, parser->DefPatID);
     if (parser->DefPat > 0) for (i = 1; i <= net->Nnodes; i++)
@@ -559,7 +559,7 @@ void convertunits(Project *pr)
             demand->Base /= pr->Ucf[DEMAND];
         }
     }
-    
+
     // Convert PDA pressure limits
     hyd->Pmin /= pr->Ucf[PRESSURE];
     hyd->Preq /= pr->Ucf[PRESSURE];

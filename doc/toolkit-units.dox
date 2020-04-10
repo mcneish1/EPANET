@@ -5,7 +5,7 @@
 The toolkit can use data expressed in either US Customary of SI Metric units. A project's unit system depends on the unit system used for its choice of flow units. If the @ref EN_open function is used to supply data to a project from an Input File then its flow units are set in the @ref OptionsPage section of the file. If the @ref EN_init function is used to initialize a project then the choice of flow units is the fourth argument to the function. The following table lists the units used to express the various parameters in an EPANET model.
 
 | Parameter      | US Customary            | SI Metric                 |
-|----------------|-------------------------|---------------------------| 
+|----------------|-------------------------|---------------------------|
 |Concentration   | mg/L or ug/L            | mg/L or ug/L              |
 |Demand          | (see Flow units)        | (see Flow units)          |
 |Diameter (Pipes)| inches                  | millimeters               |

@@ -396,13 +396,13 @@ void emitterheadloss(Project *pr, int i, double *hloss, double *hgrad)
     // Compute gradient of head loss through emitter
     q = hyd->EmitterFlow[i];
     *hgrad = hyd->Qexp * ke * pow(fabs(q), hyd->Qexp - 1.0);
-    
+
     // Use linear head loss function for small gradient
     if (*hgrad < hyd->RQtol)
     {
         *hgrad = hyd->RQtol;
         *hloss = (*hgrad) * q;
-    }            
+    }
 
     // Otherwise use normal emitter head loss function
     else *hloss = (*hgrad) * q / hyd->Qexp;
@@ -433,7 +433,7 @@ void  demandcoeffs(Project *pr)
             n,          // exponent in head loss v. demand function
             hloss,      // head loss in supplying demand (ft)
             hgrad;      // gradient of demand head loss (ft/cfs)
-            
+
     // Get demand function parameters
     if (hyd->DemandModel == DDA) return;
     dp = hyd->Preq - hyd->Pmin;
@@ -444,10 +444,10 @@ void  demandcoeffs(Project *pr)
     {
         // Skip junctions with non-positive demands
         if (hyd->NodeDemand[i] <= 0.0) continue;
-        
+
         // Find head loss for demand outflow at node's elevation
         demandheadloss(pr, i, dp, n, &hloss, &hgrad);
-                    
+
         // Update row of solution matrix A & its r.h.s. F
         if (hgrad > 0.0)
         {
@@ -473,11 +473,11 @@ void demandheadloss(Project *pr, int i, double dp, double n,
 */
 {
     Hydraul *hyd = &pr->hydraul;
-   
+
     double d = hyd->DemandFlow[i];
     double dfull = hyd->NodeDemand[i];
     double r = d / dfull;
-    
+
     // Use lower barrier function for negative demand
     if (r <= 0)
     {
@@ -497,7 +497,7 @@ void demandheadloss(Project *pr, int i, double dp, double n,
         }
         else *hloss = (*hgrad) * d / n;
     }
-    
+
     // Use upper barrier function for demand above full value
     else
     {
@@ -548,7 +548,7 @@ void  pipecoeff(Project *pr, int k)
 
     // Friction head loss gradient
     hgrad = hyd->Hexp * r * pow(q, hyd->Hexp - 1.0);
-    
+
     // Friction head loss:
     // ... use linear function for very small gradient
     if (hgrad < hyd->RQtol)
@@ -558,7 +558,7 @@ void  pipecoeff(Project *pr, int k)
     }
     // ... otherwise use original formula
     else hloss = hgrad * q / hyd->Hexp;
-    
+
     // Contribution of minor head loss
     if (ml > 0.0)
     {
@@ -738,7 +738,7 @@ void  pumpcoeff(Project *pr, int k)
         n = pump->N;
         if (ABS(n - 1.0) < TINY) n = 1.0;
         r = pump->R * pow(setting, 2.0 - n);
-        
+
         // Constant HP pump
         if (pump->Ptype == CONST_HP)
         {
@@ -760,7 +760,7 @@ void  pumpcoeff(Project *pr, int k)
             {
                 hloss = r / hyd->LinkFlow[k];
             }
-        }            
+        }
 
         // Compute head loss and its gradient
         // ... pump curve is nonlinear
@@ -1127,15 +1127,15 @@ void valvecoeff(Project *pr, int k)
     {
         q = fabs(flow);
         hgrad = 2.0 * link->Km * q;
-        
+
         // Guard against too small a head loss gradient
         if (hgrad < hyd->RQtol)
         {
             hgrad = hyd->RQtol;
             hloss = flow * hgrad;
         }
-        else hloss = flow * hgrad / 2.0;        
-        
+        else hloss = flow * hgrad / 2.0;
+
         // P and Y coeffs.
         hyd->P[k] = 1.0 / hgrad;
         hyd->Y[k] = hloss / hgrad;

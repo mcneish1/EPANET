@@ -44,7 +44,7 @@ int  main(int argc, char *argv[])
     int  major;
     int  minor;
     int  patch;
-    
+
     // Check for proper number of command line arguments
     if (argc < 3)
     {
@@ -60,7 +60,7 @@ int  main(int argc, char *argv[])
     minor = (version%10000)/100;
     patch = version%100;
     printf("\n... Running EPANET Version %d.%d.%d\n", major, minor, patch);
-  
+
     // Assign pointers to file names
     f1 = argv[1];
     f2 = argv[2];

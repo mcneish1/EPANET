@@ -1,14 +1,14 @@
 #
-# requirements-appveyor.txt 
+# requirements-appveyor.txt
 #
 # Date Created: 10/10/2017
 # Author: Michael E. Tryby
 #         US EPA ORD/NRMRL
 #
-# Useful for configuring a python environment to run epanet-nrtestsuite 
-# on AppVeyor CI. 
+# Useful for configuring a python environment to run epanet-nrtestsuite
+# on AppVeyor CI.
 #
-# command: 
+# command:
 #  $ pip install --src build/packages -r tools/requirements-appveyor.txt
 #
 

@@ -162,7 +162,7 @@ double  tankgrade(Project *, int, double);
 void    resistcoeff(Project *, int);
 void    headlosscoeffs(Project *);
 void    matrixcoeffs(Project *);
-void    emitterheadloss(Project *, int, double *, double *);           
+void    emitterheadloss(Project *, int, double *, double *);
 void    demandheadloss(Project *, int, double, double, double *, double *);
 
 // ------- QUALITY.C --------------------

@@ -35,7 +35,7 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
     // Set Demand Multiplier to 10 to cause negative pressures
     error = EN_setoption(ph, EN_DEMANDMULT, 10);
     BOOST_REQUIRE(error == 0);
-    
+
     // Run single period analysis
     error = EN_settimeparam(ph, EN_DURATION, 0);
     BOOST_REQUIRE(error == 0);
@@ -53,7 +53,7 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
     // Switch to PDA with pressure limits of 20 - 100 psi
     error = EN_setdemandmodel(ph, EN_PDA, 20, 100, 0.5);
     BOOST_REQUIRE(error == 0);
-    
+
     // Solve hydraulics again
     error = EN_solveH(ph);
     BOOST_REQUIRE(error == 0);
@@ -73,7 +73,7 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
     BOOST_REQUIRE(error == 0);
     BOOST_REQUIRE(abs(reduction) < 0.01);
 
-    // Check that Junction 21 had a demand deficit of 413.67    
+    // Check that Junction 21 had a demand deficit of 413.67
     error = EN_getnodeindex(ph, (char *)"21", &index);
     BOOST_REQUIRE(error == 0);
     error = EN_getnodevalue(ph, index, EN_DEMANDDEFICIT, &reduction);

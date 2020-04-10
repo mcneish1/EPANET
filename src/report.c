@@ -358,15 +358,15 @@ void writehydstat(Project *pr, int iter, double relerr)
   {
     if (relerr <= hyd->Hacc) sprintf(s1, FMT58, atime, iter);
     else sprintf(s1, FMT59, atime, iter, relerr);
-    writeline(pr, s1); 
+    writeline(pr, s1);
     if (hyd->DemandModel == PDA && hyd->DeficientNodes > 0)
     {
         if (hyd->DeficientNodes == 1)
           sprintf(s1, FMT69a, hyd->DemandReduction);
         else
           sprintf(s1, FMT69b, hyd->DeficientNodes, hyd->DemandReduction);
-        writeline(pr, s1);        
-    }    
+        writeline(pr, s1);
+    }
   }
 
   // Display status changes for tanks:

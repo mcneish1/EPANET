@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 #
-#  setup.py 
+#  setup.py
 #
 #  Created on  Aug 30, 2016
 #  Author:     Michael E. Tryby
@@ -9,7 +9,7 @@
 #
 ''' Setup up script for nrtest_epanet package. '''
 
-try: 
+try:
     from setuptools import setup
 except ImportError:
     from distutils.core import setup
@@ -27,11 +27,11 @@ setup(
     name='nrtest-epanet',
     version='0.5.0',
     description="EPANET extension for nrtest",
-    
+
     author="Michael E. Tryby",
     author_email='tryby.michael@epa.gov',
     url='https://github.com/USEPA',
-    
+
     packages=['nrtest_epanet',],
     entry_points=entry_points,
 
@@ -41,5 +41,5 @@ setup(
         'numpy>=1.7.0',
         'epanet_output'
     ],
-    keywords='nrtest_epanet'  
+    keywords='nrtest_epanet'
 )

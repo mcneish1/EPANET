@@ -2,14 +2,14 @@
 
 #
 #  __init__.py - nrtest_epanet module
-# 
+#
 #  Author:     Michael E. Tryby
 #              US EPA - ORD/NRMRL
 #
 
 '''
-Numerical regression testing (nrtest) plugin for comparing EPANET binary results 
-files and EPANET text based report files. 
+Numerical regression testing (nrtest) plugin for comparing EPANET binary results
+files and EPANET text based report files.
 '''
 
 # system imports
@@ -37,39 +37,39 @@ __status  = "Development"
 
 
 def epanet_allclose_compare(path_test, path_ref, rtol, atol):
-    ''' 
-    Compares results in two EPANET binary files using the comparison criteria 
-    described in the numpy assert_allclose documentation. 
-            
-        (test_value - ref_value) <= atol + rtol * abs(ref_value) 
-    
-    Returns true if all of the results in the two binary files meet the 
-    comparison criteria; otherwise, an AssertionError is thrown. 
-    
-    Numpy allclose is quite expensive to evaluate. Test and reference results 
-    are checked to see if they are equal before being compared using the 
-    allclose criteria. This reduces comparison times significantly. 
-    
-    Arguments: 
+    '''
+    Compares results in two EPANET binary files using the comparison criteria
+    described in the numpy assert_allclose documentation.
+
+        (test_value - ref_value) <= atol + rtol * abs(ref_value)
+
+    Returns true if all of the results in the two binary files meet the
+    comparison criteria; otherwise, an AssertionError is thrown.
+
+    Numpy allclose is quite expensive to evaluate. Test and reference results
+    are checked to see if they are equal before being compared using the
+    allclose criteria. This reduces comparison times significantly.
+
+    Arguments:
         path_test - path to result file being tested
         path_ref  - path to reference result file
         rtol - relative tolerance
         atol - absolute tolerance
-    
-    Returns: 
+
+    Returns:
         True
-                
+
     Raises:
         ValueError()
         AssertionError()
         ...
     '''
-    for (test, ref) in it.izip(ordr.output_generator(path_test), 
+    for (test, ref) in it.izip(ordr.output_generator(path_test),
                                ordr.output_generator(path_ref)):
-        
+
         if len(test[0]) != len(ref[0]):
             raise ValueError('Inconsistent lengths')
-        
+
         # Skip over arrays that are equal
         if np.array_equal(test[0], ref[0]):
             continue
@@ -104,7 +104,7 @@ def epanet_mincdd_compare(path_test, path_ref, rtol, atol):
     '''
     min_cdd = 100.0
 
-    for (test, ref) in it.izip(ordr.output_generator(path_test), 
+    for (test, ref) in it.izip(ordr.output_generator(path_test),
                                ordr.output_generator(path_ref)):
 
         if len(test[0]) != len(ref[0]):
@@ -132,35 +132,35 @@ def epanet_mincdd_compare(path_test, path_ref, rtol, atol):
 def epanet_report_compare(path_test, path_ref, rtol, atol):
     '''
     Compares results in two report files ignoring contents of header and footer.
-    
-    Note: Header is 11 lines with report summary turned off. This test will fail 
-    if the report summary is turned on because a time stamp is being written 
-    immediately after it.  
-    
-    Arguments: 
+
+    Note: Header is 11 lines with report summary turned off. This test will fail
+    if the report summary is turned on because a time stamp is being written
+    immediately after it.
+
+    Arguments:
         path_test - path to result file being tested
         path_ref  - path to reference result file
         rtol - ignored
         atol - ignored
-    
-    Returns: 
+
+    Returns:
         True or False
-        
-    Raises: 
+
+    Raises:
         HeaderError()
         FooterError()
         RunTimeError()
         ...
     '''
-    HEADER = 10 
+    HEADER = 10
     FOOTER = 2
 
     with open(path_test ,'r') as ftest, open(path_ref, 'r') as fref:
-        
-        for (test_line, ref_line) in it.izip(hdf.parse(ftest, HEADER, FOOTER)[1], 
-                                             hdf.parse(fref, HEADER, FOOTER)[1]): 
-        
-            if test_line != ref_line: 
+
+        for (test_line, ref_line) in it.izip(hdf.parse(ftest, HEADER, FOOTER)[1],
+                                             hdf.parse(fref, HEADER, FOOTER)[1]):
+
+            if test_line != ref_line:
                 return False
 
-    return True 
+    return True

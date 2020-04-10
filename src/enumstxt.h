@@ -17,9 +17,9 @@
 
 char *NodeTxt[]         = {t_JUNCTION,
                            t_RESERVOIR,
-                           t_TANK}; 
+                           t_TANK};
 
-char *LinkTxt[]         = {w_CV, 
+char *LinkTxt[]         = {w_CV,
                            w_PIPE,
                            w_PUMP,
                            w_PRV,
@@ -61,13 +61,13 @@ char *RptFlowUnitsTxt[] = {u_CFS,
                            u_CMD};
 
 char *FlowUnitsTxt[]    = {w_CFS,
-                           w_GPM, 
+                           w_GPM,
                            w_MGD,
                            w_IMGD,
                            w_AFD,
-                           w_LPS, 
-                           w_LPM, 
-                           w_MLD, 
+                           w_LPS,
+                           w_LPM,
+                           w_MLD,
                            w_CMH,
                            w_CMD};
 
@@ -82,7 +82,7 @@ char *DemandModelTxt[] = { w_DDA,
 char *QualTxt[]         = {w_NONE,
                            w_CHEM,
                            w_AGE,
-                           w_TRACE};  
+                           w_TRACE};
 
 
 char *SourceTxt[]       = {w_CONCEN,
@@ -104,7 +104,7 @@ char *TstatTxt[]        = {w_NONE,
 char *MixTxt[]          = {w_MIXED,
                            w_2COMP,
                            w_FIFO,
-                           w_LIFO, 
+                           w_LIFO,
                            NULL};
 
 char *RptFlagTxt[]      = {w_NO,

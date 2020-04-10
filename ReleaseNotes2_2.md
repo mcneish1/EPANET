@@ -1,4 +1,4 @@
-﻿Release Notes for EPANET 2.2
+Release Notes for EPANET 2.2
 ============================
 This document describes the changes and updates that have been made in version 2.2 of EPANET.
 
