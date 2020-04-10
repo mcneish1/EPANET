@@ -150,9 +150,12 @@ int  allocsmatrix(Smatrix *sm, int Nnodes, int Nlinks)
     sm->Order  = (int *) calloc(Nnodes+1,  sizeof(int));
     sm->Row    = (int *) calloc(Nnodes+1,  sizeof(int));
     sm->Ndx    = (int *) calloc(Nlinks+1,  sizeof(int));
+    sm->Degree = (int *) calloc(Nnodes+1,  sizeof(int));
+
     ERRCODE(MEMCHECK(sm->Order));
     ERRCODE(MEMCHECK(sm->Row));
     ERRCODE(MEMCHECK(sm->Ndx));
+    ERRCODE(MEMCHECK(sm->Degree));
     return errcode;
 }
 
@@ -204,6 +207,7 @@ void  freesparse(Project *pr)
     FREE(sm->Order);
     FREE(sm->Row);
     FREE(sm->Ndx);
+    FREE(sm->Degree);
     FREE(sm->XLNZ);
     FREE(sm->NZSUB);
     FREE(sm->LNZ);
@@ -443,9 +447,6 @@ int factorize(Project *pr)
     Padjlist alink;
 
     // Find degree of each junction node
-    sm->Degree = (int *)calloc(net->Nnodes + 1, sizeof(int));
-    if (sm->Degree == NULL) return 101;
-
     // NOTE: For purposes of node re-ordering, Tanks (nodes with
     //       indexes above Njuncs) have zero degree of adjacency.
 
@@ -470,7 +471,7 @@ int factorize(Project *pr)
         }
         sm->Degree[knode] = 0;                  // In-activate node
     }
-    free(sm->Degree);
+
     return errcode;
 }
 
