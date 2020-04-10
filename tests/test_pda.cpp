@@ -30,7 +30,12 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
 
     EN_Project ph = NULL;
     error = EN_createproject(&ph);
+    BOOST_REQUIRE(error == 0);
     error = EN_open(ph, DATA_PATH_NET1, DATA_PATH_RPT, "");
+    BOOST_REQUIRE(error == 0);
+
+    error = EN_openH(ph);
+    BOOST_REQUIRE(error == 0);
 
     // Set Demand Multiplier to 10 to cause negative pressures
     error = EN_setoption(ph, EN_DEMANDMULT, 10);
@@ -42,7 +47,7 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
 
     // Solve hydraulics with default DDA option
     // which will return with neg. pressure warning code
-    error = EN_solveH(ph);
+    error = EN_solve_openedH(ph);
     BOOST_REQUIRE(error == 6);
 
     // Check that 4 demand nodes have negative pressures
@@ -55,7 +60,7 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
     BOOST_REQUIRE(error == 0);
 
     // Solve hydraulics again
-    error = EN_solveH(ph);
+    error = EN_solve_openedH(ph);
     BOOST_REQUIRE(error == 0);
 
     // Check that 6 nodes had demand reductions totaling 32.66%
@@ -81,6 +86,8 @@ BOOST_AUTO_TEST_CASE(test_pda_model)
     BOOST_REQUIRE(abs(reduction - 413.67) < 0.01);
 
     // Clean up
+    error = EN_closeH(ph);
+    BOOST_REQUIRE(error == 0);
     error = EN_close(ph);
     BOOST_REQUIRE(error == 0);
     error = EN_deleteproject(ph);

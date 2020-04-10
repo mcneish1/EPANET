@@ -229,6 +229,11 @@ typedef struct Project *EN_Project;
   int DLLEXPORT EN_solveH(EN_Project ph);
 
   /**
+  @brief Runs a complete hydraulic simulation, with a pre-opened hydraulics solver.
+  */
+  int DLLEXPORT EN_solve_openedH(EN_Project ph);
+
+  /**
   @brief Uses a previously saved binary hydraulics file to supply a project's hydraulics.
   @param ph an EPANET project handle.
   @param filename the name of the binary file containing hydraulic results.

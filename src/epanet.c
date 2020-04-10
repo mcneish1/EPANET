@@ -399,6 +399,41 @@ int DLLEXPORT EN_close(EN_Project p)
 
  ********************************************************************/
 
+int DLLEXPORT EN_solve_openedH(EN_Project p)
+/*----------------------------------------------------------------
+ **  Input:   none
+ **  Output:  none
+ **  Returns: error code
+ **  Purpose: solves for network hydraulics in all time periods,
+              with an unmanaged hydraulics solver.
+ **----------------------------------------------------------------
+ */
+{
+    int errcode;
+    long t, tstep;
+
+    // Initialize hydraulics
+    errcode = EN_initH(p, EN_SAVE);
+
+    // Analyze each hydraulic time period
+    if (!errcode) do
+    {
+        // Display progress message
+        sprintf(p->Msg, "%-10s",
+                clocktime(p->report.Atime, p->times.Htime));
+        sprintf(p->Msg, FMT101, p->report.Atime);
+        writewin(p->viewprog, p->Msg);
+
+        // Solve for hydraulics & advance to next time period
+        tstep = 0;
+        ERRCODE(EN_runH(p, &t));
+        ERRCODE(EN_nextH(p, &tstep));
+    } while (tstep > 0);
+
+    errcode = MAX(errcode, p->Warnflag);
+    return errcode;
+}
+
 int DLLEXPORT EN_solveH(EN_Project p)
 /*----------------------------------------------------------------
  **  Input:   none
@@ -415,27 +450,11 @@ int DLLEXPORT EN_solveH(EN_Project p)
     errcode = EN_openH(p);
     if (!errcode)
     {
-        // Initialize hydraulics
-        errcode = EN_initH(p, EN_SAVE);
-
-        // Analyze each hydraulic time period
-        if (!errcode) do
-        {
-            // Display progress message
-            sprintf(p->Msg, "%-10s",
-                    clocktime(p->report.Atime, p->times.Htime));
-            sprintf(p->Msg, FMT101, p->report.Atime);
-            writewin(p->viewprog, p->Msg);
-
-            // Solve for hydraulics & advance to next time period
-            tstep = 0;
-            ERRCODE(EN_runH(p, &t));
-            ERRCODE(EN_nextH(p, &tstep));
-        } while (tstep > 0);
+        ERRCODE(EN_solve_openedH(p));
     }
 
     // Close hydraulics solver
-    EN_closeH(p);
+    ERRCODE(EN_closeH(p));
     errcode = MAX(errcode, p->Warnflag);
     return errcode;
 }
